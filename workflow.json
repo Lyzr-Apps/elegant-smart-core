@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "updated_at": "2025-12-12T00:00:00Z",
+  "workflow": {
+    "nodes": [
+      {
+        "id": "user_input",
+        "type": "input",
+        "label": "User Message",
+        "nodeCategory": "input",
+        "description": "User enters a message in the chat interface",
+        "position": { "x": 100, "y": 200 }
+      },
+      {
+        "id": "chat_agent",
+        "type": "agent",
+        "label": "Chat Assistant Agent",
+        "nodeCategory": "agent",
+        "description": "Processes user messages with conversation memory and provides contextual responses",
+        "position": { "x": 500, "y": 200 }
+      },
+      {
+        "id": "response_output",
+        "type": "end",
+        "label": "Assistant Response",
+        "nodeCategory": "end",
+        "description": "Returns AI-generated response to the user",
+        "position": { "x": 900, "y": 200 }
+      }
+    ],
+    "edges": [
+      {
+        "source": "user_input",
+        "target": "chat_agent",
+        "label": "Send message"
+      },
+      {
+        "source": "chat_agent",
+        "target": "response_output",
+        "label": "Return response"
+      }
+    ]
+  },
+  "agents": [
+    {
+      "agent_id": "693bfaa59188cfbc911c685e",
+      "node_id": "chat_agent",
+      "name": "Chat Assistant Agent",
+      "description": "Handles all user conversations, provides helpful responses to queries, maintains context across messages using conversation memory",
+      "agent_role": "Conversational AI Assistant",
+      "agent_goal": "Provide helpful, contextual, and accurate responses to user queries while maintaining conversation memory",
+      "agent_instructions": "You are a helpful conversational AI assistant. Your responsibilities:\n\n1. **Answer Questions:** Provide clear, accurate, and helpful responses to user queries\n2. **Maintain Context:** Remember previous messages in the conversation (up to 10 messages) and reference them when relevant\n3. **Be Conversational:** Use natural language, be friendly and approachable\n4. **Format Responses:** Use markdown formatting for better readability (bold, italics, code blocks, lists)\n5. **Ask Clarifications:** If a question is ambiguous, politely ask for clarification\n6. **Be Honest:** If you don't know something, say so instead of making up information\n\nGuidelines:\n- Keep responses concise but complete\n- Use proper markdown syntax for code snippets and formatted text\n- Break down complex topics into understandable parts\n- Be respectful and professional in all interactions\n- Acknowledge previous context when relevant to show understanding",
+      "provider_id": "OpenAI",
+      "model": "gpt-4o-mini",
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "features": [
+        {
+          "type": "MEMORY",
+          "config": {
+            "max_messages_context_count": 10
+          },
+          "priority": 0
+        }
+      ],
+      "has_knowledge_base": false,
+      "rag_id": null,
+      "rag_name": null,
+      "position": { "x": 500, "y": 200 },
+      "created_at": "2025-12-12T00:00:00Z"
+    }
+  ],
+  "knowledge_bases": []
+}
